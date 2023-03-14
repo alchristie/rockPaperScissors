@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+
+<body style="background-color: rgb(255, 156, 232)">
+ 
+  <h1>Rock Paper Scissors</h1>
+
+  <image src="https://encrypted-tbn0.gstatic.com/
+  images?q=tbn:ANd9GcR4sllenfCvfyD4C8Jq99dD8E-vCCP
+  rIsEiEA&usqp=CAU" alt="example">
+  
+  <script>
+
+    function resetGame() {
+      console.clear()
+    }
+
+    function random() {
+      var newNum = fancyLogic()
+      console.log (newNum)
+
+      return newNum
+    }
+
+    const choiceEnum = ["rock", "paper", "scissors"]
+    var choiceCount = choiceEnum.length
+    // let computerChoice = choiceEnum[Math.floor(Math.random() * choiceCount)]
+    
+    function getComputerChoice() {
+      var computerChoice = "rock"
+      // todo: update computer choice to be random
+
+      return computerChoice
+    }
+
+    function getPlayerChoice() {
+      // get function with human interaction
+
+      var playerInput = prompt("Choose your weapon","")
+      playerInput = playerInput.toLowerCase()
+
+      // if Player choice a valid value in choiceEnum
+      var validChoice = choiceEnum.includes(playerInput)
+      if (!choiceEnum.includes(playerInput)) {
+        console.log(playerInput + " is invalid")
+        while (!validChoice) {
+          playerInput = prompt(`lol k now tell me what you want ${playerInput} to play as (rock paper or scissors pls)`,"")
+          validChoice = choiceEnum.includes(playerInput)
+        }
+      }
+        
+       
+
+      var playerChoice = playerInput.toLowerCase()
+      
+      return playerChoice
+    }
+
+    function getWinner() {
+      // logic function and get function
+      
+    }
+
+    function displayWinner() {
+      // doing function
+    }
+   
+    function singleRound() {
+      let computerChoice = getComputerChoice() //get value
+      console.log("Computer chose " + computerChoice)
+      let playerChoice = getPlayerChoice() //get value
+      console.log ("Player chose " + playerChoice)
+
+      // getWinner() //get value //hint: needs parameters
+
+      // displayWinner() // display choices and winner to console //hint: needs parameters
+    }
+      
+      // is PlayerInput a valid value in choiceEnum
+        //if yes
+          //play round
+          //declare winner
+          //tally round count and score
+          //ask to start next round
+        //if no
+          //convert answer
+          //play round
+          //declare winner
+          //tally round count and score
+          //ask to start next round
+
+
+      //computer asks players
+      //who submit unknown answers for the first time which option they meant 
+      //with a choice to click one of the three hand signs. If playerChoice has 
+      //been chosen the most times as 
+      //one of the valid choices 
+      //it will be played as such and
+      //pop up says we identified your
+      //choice as rock, is that what you
+      //meant? (gives choice rock paper scissors)
+
+      
+      //run arguments through game engine, return winner
+        // zaddy hint:: var winner = getWinner(player, computer)
+
+
+      //display message win/loss/tie
+
+
+
+
+  </script>
+
+  <div>
+    <button onclick="resetGame()">RESET GAME</button>
+    <div id="label" value="computor choice:"></div>
+    <div id="compVal" value="n/a"></div>
+  </div>
+  
+  <div>
+    <button onclick="singleRound()">PLAY ROUND</button>
+    <div id="label" value="computor choice:"></div>
+    <div id="compVal" value="n/a"></div>
+  </div>
+
+</body>
+
+</html>

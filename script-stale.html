@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+
+<body style="background-color: rgb(255, 156, 232)">
+
+  <script>
+    const choiceList = ["rock", "paper", "scissors"];  //enum
+    // i = 2
+      j = rand * 3 | 0, 1, 2 // 2
+      k = list[2] | scissors
+      list[2] = list[0], list[1], or list[2] | rock, paper, scissors
+      list[0], list[1], or list[2] = list[2] | scissors
+    //i = 1
+      j = rand * 2 | 0, 1
+      k = list[0], list[1], or list[2] | rock, paper, scissors
+      list[1] = list[1], or list[2] | rock, paper, scissors
+      list[0], list[1] = list[0], list[1], or list[2] | rock, paper, scissors
+    //i = 0
+      j = rand * 1 | 0
+      k = list[0] | rock, paper, scissors
+      list[0] = list[0], list[1], or list[2] | rock, paper, scissors
+      list[0] = list[0] | rock, paper, scissors
+
+    for (let i = choiceList.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let k = choiceList[i];
+      choiceList[i] = choiceList[j];
+      choiceList[j] = k;
+    }
+    function getComputerChoice() {
+      // DOING: add function body to return random from list [rock paper scissors]
+      return choiceList[0];
+
+    }
+    //let playerChoice = prompt("Choose your weapon","Rock, paper, or Scissors?");
+
+   // function playRound (playerChoice, computerChoice) {
+      // todo: compare choices and return win/loss statement
+
+
+
+
+
+  </script>
+</body>
+
+</html>
