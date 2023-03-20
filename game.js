@@ -1,8 +1,15 @@
 const choiceEnum = ["rock", "paper", "scissors"]
 var sillyChoices = {}
+let currentRound = 0
+let playerScore = 0
+let computerScore = 0
 
 function resetGame() {
     console.clear()
+    currentRound = 0  
+    playerScore = 0
+    computerScore = 0
+    console.log("NEW GAME! best 3 out of 5 rounds wins!")
   }
 
 function getComputerChoice() {
@@ -11,101 +18,138 @@ function getComputerChoice() {
   return computerChoice
 }
 
-function addNewSillyChoice(sillyChoice, validChoice) {
-
-  console.log(`sillyChoice set to: ${sillyChoice}`) 
-  console.log(`validChoice set to: ${validChoice}` )
-  //check if sillychoices[key] exists
+function addNewSillyChoice(sillyChoice) {
+  
   if (sillyChoice in sillyChoices) {
-    //if it exists, break/return
-    console.log(`${sillyChoice} is already in silly choices list as ${validChoice}`)
+    let sillyValue = sillyChoices[sillyChoice]
+    console.log(`${sillyChoice} already plays as ${sillyValue}`)
+    playerChoice = sillyValue
 
-    return validChoice
+    return 
   }
 
-  //otherwise, add sillychoice,validchoice to sillychoices
-  // do something
-  // console.log('new silly choice: ${silly choice}')
-  // return something
-
+  var validInput = choiceEnum.includes(sillyChoice)
+  while (!validInput) {
+    playerInput = prompt(`lol k... now tell me what you want '${sillyChoice}' to play as (rock paper or scissors pls)`,"").toLowerCase()
+    validInput = choiceEnum.includes(playerInput)
   }
-
+  let sillyValue = playerInput
+  sillyChoices[sillyChoice] = sillyValue
+  console.log(`new silly choice added: ${sillyChoice} will play as ${sillyValue}`)
+  playerChoice = sillyValue
+  return playerChoice
+}  
 
 
 function getPlayerChoice() {
   var playerInput = prompt("Choose your weapon","")
     playerInput = playerInput.toLowerCase()
+
   
-  var validInput = choiceEnum.includes(playerInput)
+  var validInput = choiceEnum.includes(playerInput) 
   if (!validInput) {
-    console.log(playerInput + " is invalid")
+    console.log(`${playerInput} is a silly choice`)
     var sillyChoice = playerInput
-    while (!validInput) {
-      playerInput = prompt(`lol k... now tell me what you want '${sillyChoice}' to play as (rock paper or scissors pls)`,"").toLowerCase()
-      validInput = choiceEnum.includes(playerInput)
-    }
-    var validChoice = playerInput
-    addSillyChoice(sillyChoice,validChoice)
-    
-    return sillyChoice
-  }
-      
-     
+    addNewSillyChoice(sillyChoice)
 
-    var playerChoice = playerInput
-    
-    return playerChoice
+    return
+  }
+  playerChoice = playerInput
+}
+
+function displayScore() {
+  console.log(`Computer Score: ${computerScore} | Player Score: ${playerScore}`)  
+
+}
+
+function singleRound() {
+  currentRound++
+  console.log(`ROUND ${currentRound} STARTED`)
+  getPlayerChoice() 
+  console.log (`Player chose ${playerChoice}`)
+
+  let computerChoice = getComputerChoice() 
+  console.log(`Computer chose ${computerChoice}`)
+
+  if (playerChoice == computerChoice) {
+    console.log("IT'S A TIE! Round restarted.")
+    currentRound --
+   
+    return
   }
 
-  function getWinner() {
-    // logic function and get function
-    
-  }
-
-  function displayWinner() {
-    // doing function
-  }
+  if (playerChoice == "rock" && computerChoice == "scissors") {
+    console.log(`YOU WIN ROUND ${currentRound}!`)
+    playerScore ++
  
-  function singleRound() {
-    let computerChoice = getComputerChoice() 
-    console.log("Computer chose " + computerChoice)
-
-    let playerChoice = getPlayerChoice() 
-    console.log (`Player chose ${playerChoice}`)
-
-
-    // getWinner() //get value //hint: needs parameters
-
-    // displayWinner() // display choices and winner to console //hint: needs parameters
+    return 
   }
+
+  if (playerChoice == "rock" && computerChoice == "paper") {
+    console.log(`YOU LOSE ROUND ${currentRound}!`)
+    computerScore ++
+   
+    return
+  }
+
+  if (playerChoice == "paper" && computerChoice == "rock") {
+    console.log(`YOU WIN ROUND ${currentRound}!`)
+    playerScore ++
+   
+    return 
+  }
+
+  if (playerChoice == "paper" && computerChoice == "scissors") {
+    console.log(`YOU LOSE ROUND ${currentRound}!`)
+    computerScore ++
+
+    return 
+  }
+
+  if (playerChoice == "scissors" && computerChoice == "paper") {
+    console.log(`YOU WIN ROUND ${currentRound}!`)
+    playerScore ++
+   
+    return
+  }
+
+  if (playerChoice == "scissors" && computerChoice == "rock") {
+     console.log(`YOU LOSE ROUND ${currentRound}!`)
+    computerScore ++
+
+    return 
+  }  
+}
+
+function displayWinner() {
+  if (playerScore == 3) {
+    console.log(`CONGRATULATIONS, YOU WON THE GAME!`)
+    displayScore()
+
+    return
+  } 
+
+  if (computerScore == 3) {
+    console.log(`SORRY, YOU LOST THE GAME!`)
+    displayScore()
+
+    return 
+  }
+}
+
+function gameplay(){
+  resetGame()
+  singleRound()
+  displayScore()
+  while (playerScore < 3 && computerScore < 3){
+    singleRound()
+    displayScore()
     
-    // is PlayerInput a valid value in choiceEnum
-      //if yes
-        //play round
-        //declare winner
-        //tally round count and score
-        //ask to start next round
-      //if no
-        //convert answer
-        //play round
-        //declare winner
-        //tally round count and score
-        //ask to start next round
+  } 
+  displayWinner()
 
 
-    //computer asks players
-    //who submit unknown answers for the first time which option they meant 
-    //with a choice to click one of the three hand signs. If playerChoice has 
-    //been chosen the most times as 
-    //one of the valid choices 
-    //it will be played as such and
-    //pop up says we identified your
-    //choice as rock, is that what you
-    //meant? (gives choice rock paper scissors)
-
-    
-    //run arguments through game engine, return winner
-      // zaddy hint:: var winner = getWinner(player, computer)
+}
 
 
-    //display message win/loss/tie
+
