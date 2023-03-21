@@ -3,31 +3,30 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Rock Paper Scissors</title>
+  <title>Rock Paper Silly</title>
+  <link rel = "stylesheet" href = "styleSheet.css">
 </head>
 
-<body style="background-color: rgb(255, 156, 232)">
- 
-  <h1>Rock Paper Scissors</h1>
+<body>
+ <div class = "page">
+  <h1 class = "title">Rock Paper Silly!</h1>
+  <h2 class = "about">We all know how to play rock paper scissors... <br>It's you vs the computer, 
+    best 3 out of 5 <br> Click the "Start Game" button and pick a weapon, any weapon! </h2>
 
-  <image src="https://encrypted-tbn0.gstatic.com/
-  images?q=tbn:ANd9GcR4sllenfCvfyD4C8Jq99dD8E-vCCP
-  rIsEiEA&usqp=CAU" alt="example">
   
   <script type='text/javascript' src='./game.js'></script>
 
   <div>
-    <button onclick="gameplay()">START GAME</button>
-    <div id="label" value="computor choice:"></div>
+    <button class="button" onclick="gameplay()">START GAME</button>
+    <div id="label" value="start game"></div>
     <div id="compVal" value="n/a"></div>
   </div>
   
-  <div>
-    <button onclick="singleRound()">PLAY ROUND</button>
-    <div id="label" value="computor choice:"></div>
-    <div id="compVal" value="n/a"></div>
+  <div id="gameplay">
+    Game Log
   </div>
-
+  </div>
+</div>
 </body>
 
 </html>

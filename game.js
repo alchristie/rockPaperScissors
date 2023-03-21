@@ -58,7 +58,7 @@ function getPlayerChoice() {
 }
 
 function displayScore() {
-  console.log(`Computer Score: ${computerScore} | Player Score: ${playerScore}`)  
+ console.log(`Computer Score: ${computerScore} | Player Score: ${playerScore}`)
 
 }
 
